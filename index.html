@@ -61,8 +61,8 @@
             }
         }
 
-        /* 分散在空中、各自會動的浪漫語錄 */
-        .floating-marquee {
+        /* 絕對不是診所風！這是分散在空中、各自獨立且慢慢滑過去的浪漫手寫流星跑馬燈 */
+        .sky-marquee {
             position: absolute;
             font-family: 'Long Cang', cursive;
             font-size: 1.3rem;
@@ -71,14 +71,16 @@
             z-index: 5;
             white-space: nowrap;
             letter-spacing: 2px;
-            animation: wanderAround 8s infinite ease-in-out alternate;
+            animation: driftAcross linear infinite;
         }
 
-        /* 讓每一句都在自己的位置上有靈動的飄動感 */
-        @keyframes wanderAround {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
-            50% { transform: translate(15px, -12px) scale(1.05); opacity: 1; }
-            100% { transform: translate(-10px, 10px) scale(0.98); opacity: 0.8; }
+        @keyframes driftAcross {
+            0% {
+                transform: translateX(105vw);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
 
         /* 內容容器 (正中間的倒數計時) */
@@ -146,13 +148,13 @@
 
     <div class="night-sky" id="sky"></div>
 
-    <!-- 分散在空中、各自會動的浪漫語錄 -->
-    <div class="floating-marquee" style="top: 10%; left: 8%; animation-duration: 7s;">✨ 2025.12.17 我們的故事正式開始 ✨</div>
-    <div class="floating-marquee" style="top: 18%; right: 8%; animation-duration: 9s;">✨ 這麼久了 我 還是喜歡你 ✨</div>
-    <div class="floating-marquee" style="bottom: 18%; left: 8%; animation-duration: 8s;">✨ 哥哥的兔兔最乖最可愛啦 ✨</div>
-    <div class="floating-marquee" style="bottom: 10%; right: 8%; animation-duration: 6s;">✨ 哥哥我要抱抱嘛 ✨</div>
-    <div class="floating-marquee" style="top: 45%; left: 5%; animation-duration: 10s;">✨ 我的寶貝兔兔最厲害啦 ✨</div>
-    <div class="floating-marquee" style="top: 45%; right: 5%; animation-duration: 7.5s;">✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨</div>
+    <!-- 絕對分散在空中、各自慢速滑動的浪漫手寫句子 -->
+    <div class="sky-marquee" style="top: 12%; animation-duration: 22s; animation-delay: 0s;">✨ 2025.12.17 我們的故事正式開始 ✨</div>
+    <div class="sky-marquee" style="top: 23%; animation-duration: 26s; animation-delay: -9s;">✨ 這麼久了 我 還是喜歡你 ✨</div>
+    <div class="sky-marquee" style="top: 36%; animation-duration: 20s; animation-delay: -4s;">✨ 哥哥的兔兔最乖最可愛啦 ✨</div>
+    <div class="sky-marquee" style="bottom: 28%; animation-duration: 24s; animation-delay: -14s;">✨ 哥哥我要抱抱嘛 ✨</div>
+    <div class="sky-marquee" style="bottom: 16%; animation-duration: 21s; animation-delay: -7s;">✨ 我的寶貝兔兔最厲害啦 ✨</div>
+    <div class="sky-marquee" style="bottom: 7%; animation-duration: 25s; animation-delay: -17s;">✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨</div>
 
     <div class="content-container">
         <div class="countdown-box">
