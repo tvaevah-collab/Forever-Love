@@ -4,221 +4,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Forever Love - Our Journey</title>
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Caveat:wght@700&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+    <!-- 引入可愛手寫風格字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
+            background-color: #0b0f19;
             overflow: hidden;
-            font-family: 'Noto Serif TC', serif;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            font-family: 'ZCOOL KuaiLe', 'Noto Serif TC', sans-serif;
+            color: #fff;
         }
 
-        /* 閃爍星星背景 */
-        .stars {
+        /* 滿天星空背景 */
+        .night-sky {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 40px 60px, #fff, transparent),
-                radial-gradient(2.5px 2.5px at 180px 250px, #fff, transparent),
-                radial-gradient(1.5px 1.5px at 320px 120px, #fff, transparent),
-                radial-gradient(2px 2px at 520px 380px, #fff, transparent),
-                radial-gradient(2.5px 2.5px at 680px 180px, #fff, transparent),
-                radial-gradient(1.5px 1.5px at 880px 480px, #fff, transparent),
-                radial-gradient(2px 2px at 120px 550px, #fff, transparent),
-                radial-gradient(2px 2px at 780px 90px, #fff, transparent),
-                radial-gradient(2px 2px at 950px 300px, #fff, transparent),
-                radial-gradient(1.5px 1.5px at 250px 450px, #fff, transparent);
-            background-repeat: repeat;
-            background-size: 500px 500px;
-            opacity: 0.9;
-            animation: twinkle 3s ease-in-out infinite alternate;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
             z-index: 1;
         }
 
-        @keyframes twinkle {
-            0% { opacity: 0.3; }
-            100% { opacity: 1; }
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
         }
 
-        /* 絢麗流星特效 */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* 流星效果 */
         .shooting-star {
             position: absolute;
-            width: 150px;
             height: 2px;
-            background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
-            transform: rotate(-45deg);
-            animation: shoot 4s linear infinite;
+            background: linear-gradient(-45deg, rgba(255,255,255,1), rgba(0,0,255,0));
+            filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+            animation: shoot 3s infinite linear;
             z-index: 2;
             opacity: 0;
         }
 
-        .star-1 { top: 15%; left: 80%; animation-delay: 0.5s; animation-duration: 3s; }
-        .star-2 { top: 30%; left: 50%; animation-delay: 2s; animation-duration: 4.5s; }
-        .star-3 { top: 10%; left: 30%; animation-delay: 3.5s; animation-duration: 3.5s; }
-
         @keyframes shoot {
-            0% { transform: rotate(-45deg) translateX(0); opacity: 1; }
-            100% { transform: rotate(-45deg) translateX(-700px); opacity: 0; }
+            0% {
+                transform: translateX(0) translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-1000px) translateY(1000px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+
+        /* 內容容器 */
+        .content-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+            color: #ffccd5;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #b0c4de;
+            letter-spacing: 1px;
+        }
+
+        /* 倒數計時卡片 */
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .time-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-number {
+            font-size: 1.8rem;
+            color: #ff99a8;
+            font-weight: bold;
+        }
+
+        .time-label {
+            font-size: 0.85rem;
+            color: #ddd;
+            margin-top: 5px;
         }
 
         /* 跑馬燈語錄 */
-        .marquee-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .marquee-text {
-            position: absolute;
-            white-space: nowrap;
-            font-family: 'ZCOOL XiaoWei', serif;
-            font-size: 5.5vmin;
-            color: rgba(255, 255, 255, 0.75);
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-            animation: marqueeMove 45s linear infinite;
-        }
-
-        .line-1 { top: 8%;  animation-delay: 0s; }
-        .line-2 { top: 22%; animation-delay: -7s; }
-        .line-3 { top: 36%; animation-delay: -14s; }
-        .line-4 { top: 60%; animation-delay: -21s; }
-        .line-5 { top: 74%; animation-delay: -28s; }
-        .line-6 { top: 88%; animation-delay: -35s; }
-
-        @keyframes marqueeMove {
-            from { left: 100%; }
-            to { left: -100%; }
-        }
-
-        /* 主卡片：最上層毛玻璃 */
-        .main-card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(15, 23, 42, 0.45);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-radius: 35px;
-            padding: 8vmin 10vmin;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            z-index: 10;
-            width: 80%;
-            max-width: 520px;
-        }
-
-        .card-title {
-            font-size: 4vmin;
-            color: #cbd5e1;
-            margin-bottom: 8px;
-            letter-spacing: 0.2em;
-            font-weight: 600;
-        }
-
-        .card-subtitle {
-            font-size: 2.6vmin;
-            color: #94a3b8;
-            margin-bottom: 25px;
-            letter-spacing: 0.1em;
-        }
-
-        .days-count {
-            font-family: 'Caveat', cursive;
-            font-size: 26vmin;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1;
-            margin: 10px 0;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
-        }
-
-        .detail-label {
-            background: rgba(30, 41, 59, 0.65);
-            padding: 2.2vmin 4.5vmin;
-            border-radius: 50px;
-            font-size: 3vmin;
-            color: #e2e8f0;
-            display: inline-block;
-            box-shadow: inset 0 1px 3px rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.15);
-            letter-spacing: 0.05em;
-        }
-
-        @media (max-width: 768px) {
-            .marquee-text { font-size: 8vmin; }
-            .card-title { font-size: 5.5vmin; }
-            .card-subtitle { font-size: 3.8vmin; }
-            .days-count { font-size: 34vmin; }
-            .detail-label { font-size: 3.8vmin; }
+        .quote-box {
+            font-size: 1.25rem;
+            color: #fffaf0;
+            min-height: 40px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+            transition: opacity 1s ease-in-out;
+            max-width: 500px;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
 
-    <!-- 星星背景 -->
-    <div class="stars"></div>
+    <div class="night-sky" id="sky"></div>
 
-    <!-- 流星群 -->
-    <div class="shooting-star star-1"></div>
-    <div class="shooting-star star-2"></div>
-    <div class="shooting-star star-3"></div>
+    <div class="content-container">
+        <h1>Our Special Journey</h1>
+        <div class="subtitle">每一刻，都有妳陪伴的浪漫時光</div>
 
-    <!-- 跑馬燈語錄 -->
-    <div class="marquee-container">
-        <div class="marquee-text line-1">✨ 2025.12.17 我們的故事正式開始 ✨</div>
-        <div class="marquee-text line-2">✨ 這麼久了 我 還是喜歡你 ✨</div>
-        <div class="marquee-text line-3">✨ 哥哥的兔兔最乖最可愛啦 ✨</div>
-        <div class="marquee-text line-4">✨ 哥哥我要抱抱嘛 ✨</div>
-        <div class="marquee-text line-5">✨ 我的寶貝兔兔最厲害啦 ✨</div>
-        <div class="marquee-text line-6">✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨</div>
-    </div>
+        <div class="countdown-box" id="countdown">
+            <div class="time-item">
+                <span class="time-number" id="days">00</span>
+                <span class="time-label">天</span>
+            </div>
+            <div class="time-item">
+                <span class="time-number" id="hours">00</span>
+                <span class="time-label">小時</span>
+            </div>
+            <div class="time-item">
+                <span class="time-number" id="minutes">00</span>
+                <span class="time-label">分</span>
+            </div>
+            <div class="time-item">
+                <span class="time-number" id="seconds">00</span>
+                <span class="time-label">秒</span>
+            </div>
+        </div>
 
-    <!-- 主卡片 -->
-    <div class="main-card">
-        <div class="card-title">OUR JOURNEY</div>
-        <div class="card-subtitle">專屬於我們的甜蜜時光</div>
-        
-        <div class="days-count" id="daysDisplay">0</div>
-        
-        <div class="detail-label" id="detailDisplay">正在計算日子...</div>
+        <div class="quote-box" id="quoteDisplay">載入專屬回憶中...</div>
     </div>
 
     <script>
-        const startDate = new Date(2025, 11, 17, 11, 3, 0);
-
-        function updateTimer() {
-            const now = new Date();
-            const diff = now - startDate;
-
-            const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-            
-            const totalSeconds = Math.floor(diff / 1000);
-            const seconds = totalSeconds % 60;
-            const totalMinutes = Math.floor(totalSeconds / 60);
-            const minutes = totalMinutes % 60;
-            const totalHours = Math.floor(totalMinutes / 60);
-            const hours = totalHours % 24;
-
-            document.getElementById('daysDisplay').innerText = totalDays;
-            
-            document.getElementById('detailDisplay').innerText = 
-                `已經一起度過了 ${hours} 小時 ${minutes} 分鐘 ${seconds} 秒`;
+        // 1. 生成滿天繁星
+        const sky = document.getElementById('sky');
+        const starCount = 120;
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${Math.random() * 3 + 1}s`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            sky.appendChild(star);
         }
 
-        updateTimer();
-        setInterval(updateTimer, 1000);
-    </script>
+        // 2. 生成流星
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.classList.add('shooting-star');
+            star.style.top = `${Math.random() * 50}%`;
+            star.style.left = `${Math.random() * 100 + 50}%`;
+            star.style.width = `${Math.random() * 80 + 80}px`;
+            star.style.animationDuration = `${Math.random() * 1.5 + 1.5}s`;
+            sky.appendChild(star);
+            setTimeout(() => { star.remove(); }, 3000);
+        }
+        setInterval(createShootingStar, 2500);
 
+        // 3. 倒數計時（可自行修改起始日期）
+        const startDate = new Date('2026-01-01T00:00:00');
+        function updateCountdown() {
+            const now = new Date();
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 4. 跑馬燈 6 句甜甜語錄
+        const quotes = [
+            "「星空再美，也比不上妳眼裡的溫柔。」",
+            "「謝謝妳總是把最棒的驚喜帶進我的日常。」",
+            "「時間一直走，我們一直愛。」",
+            "「和小岳一起過的每一秒，都是賺到的甜。」",
+            "「有閨密和妳在身邊，這條路發光也發熱。」",
+            "「願所有的美好，都剛好如期而至。」"
+        ];
+        let currentQuoteIndex = 0;
+        const quoteDisplay = document.getElementById('quoteDisplay');
+
+        function rotateQuotes() {
+            quoteDisplay.style.opacity = 0;
+            setTimeout(() => {
+                quoteDisplay.innerText = quotes[currentQuoteIndex];
+                quoteDisplay.style.opacity = 1;
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            }, 1000);
+        }
+        rotateQuotes();
+        setInterval(rotateQuotes, 5000);
+    </script>
 </body>
 </html>
