@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Forever Love - Our Journey</title>
-    <!-- 引入原本的字型與手寫字體 -->
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Caveat:wght@700&family=Noto+Serif+TC:wght@400;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <!-- 引入原本的優雅字型 + 少年感手寫字体 Caveat -->
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Caveat:wght@600;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -91,7 +91,7 @@
             letter-spacing: 1px;
         }
 
-        /* 倒數計時卡片 (維持原本大數字美感) */
+        /* 倒數計時卡片 */
         .countdown-box {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -121,12 +121,13 @@
             letter-spacing: 1px;
         }
 
-        /* 跑馬燈語錄：維持妳要的內容，字型改為可愛手寫體 */
+        /* 跑馬燈語錄：換成率性少年的手寫風字體 (Caveat) */
         .quote-box {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: #fffaf0;
             min-height: 45px;
-            font-family: 'ZCOOL KuaiLe', sans-serif;
+            font-family: 'Caveat', cursive;
+            letter-spacing: 1px;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
             transition: opacity 1s ease-in-out;
             max-width: 500px;
@@ -140,8 +141,8 @@
     <div class="night-sky" id="sky"></div>
 
     <div class="content-container">
-        <h1>OUR JOURNEY</h1>
-        <div class="subtitle">專屬於我們的甜蜜時光</div>
+        <h1>Forever Love</h1>
+        <div class="subtitle">專屬於我們的甜蜜時光。依舊心岳你</div>
 
         <div class="countdown-box">
             <div class="days-number" id="daysCount">0</div>
@@ -198,14 +199,14 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // 4. 跑馬燈甜甜語錄（使用妳提供的原汁原味內容）
+        // 4. 跑馬燈甜甜語錄（保留妳要的全部內容）
         const quotes = [
-            "✨ 2025.12.17 我們的故事正式開始 ✨",
-            "✨ 這麼久了 我 還是喜歡你 ✨",
-            "✨ 哥哥的兔兔最乖最可愛啦 ✨",
-            "✨ 哥哥我要抱抱嘛 ✨",
-            "✨ 我的寶貝兔兔最厲害啦 ✨",
-            "✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨"
+            "2025.12.17 我們的故事正式開始",
+            "這麼久了 我 還是喜歡你",
+            "哥哥的兔兔最乖最可愛啦",
+            "哥哥我要抱抱嘛",
+            "我的寶貝兔兔最厲害啦",
+            "兔兔的傻狐狸哥哥怎麼可以這麼甜呀"
         ];
         let currentQuoteIndex = 0;
         const quoteDisplay = document.getElementById('quoteDisplay');
