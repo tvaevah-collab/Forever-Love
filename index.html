@@ -61,45 +61,24 @@
             }
         }
 
-        /* 真正會滾動的跑馬燈容器 */
-        .marquee-container {
+        /* 分散在空中、各自會動的浪漫語錄 */
+        .floating-marquee {
             position: absolute;
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            z-index: 5;
-            background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(3px);
-            padding: 10px 0;
-        }
-
-        .marquee-top {
-            top: 15px;
-        }
-
-        .marquee-bottom {
-            bottom: 15px;
-        }
-
-        .marquee-track {
-            display: inline-block;
-            white-space: nowrap;
-            animation: scrollMarquee 22s linear infinite;
-        }
-
-        .marquee-text {
-            display: inline-block;
             font-family: 'Long Cang', cursive;
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
             text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
-            margin-right: 60px;
+            z-index: 5;
+            white-space: nowrap;
             letter-spacing: 2px;
+            animation: wanderAround 8s infinite ease-in-out alternate;
         }
 
-        @keyframes scrollMarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* 讓每一句都在自己的位置上有靈動的飄動感 */
+        @keyframes wanderAround {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+            50% { transform: translate(15px, -12px) scale(1.05); opacity: 1; }
+            100% { transform: translate(-10px, 10px) scale(0.98); opacity: 0.8; }
         }
 
         /* 內容容器 (正中間的倒數計時) */
@@ -114,6 +93,7 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
+            pointer-events: none;
         }
 
         .countdown-box {
@@ -126,6 +106,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            pointer-events: auto;
         }
 
         h1 {
@@ -165,31 +146,13 @@
 
     <div class="night-sky" id="sky"></div>
 
-    <!-- 上方會滾動的跑馬燈 -->
-    <div class="marquee-container marquee-top">
-        <div class="marquee-track">
-            <span class="marquee-text">✨ 2025.12.17 我們的故事正式開始 ✨</span>
-            <span class="marquee-text">✨ 這麼久了 我 還是喜歡你 ✨</span>
-            <span class="marquee-text">✨ 哥哥的兔兔最乖最可愛啦 ✨</span>
-            <!-- 重複一次確保滾動順暢無縫 -->
-            <span class="marquee-text">✨ 2025.12.17 我們的故事正式開始 ✨</span>
-            <span class="marquee-text">✨ 這麼久了 我 還是喜歡你 ✨</span>
-            <span class="marquee-text">✨ 哥哥的兔兔最乖最可愛啦 ✨</span>
-        </div>
-    </div>
-
-    <!-- 下方會滾動的跑馬燈 -->
-    <div class="marquee-container marquee-bottom">
-        <div class="marquee-track">
-            <span class="marquee-text">✨ 哥哥我要抱抱嘛 ✨</span>
-            <span class="marquee-text">✨ 我的寶貝兔兔最厲害啦 ✨</span>
-            <span class="marquee-text">✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨</span>
-            <!-- 重複一次確保滾動順暢無縫 -->
-            <span class="marquee-text">✨ 哥哥我要抱抱嘛 ✨</span>
-            <span class="marquee-text">✨ 我的寶貝兔兔最厲害啦 ✨</span>
-            <span class="marquee-text">✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨</span>
-        </div>
-    </div>
+    <!-- 分散在空中、各自會動的浪漫語錄 -->
+    <div class="floating-marquee" style="top: 10%; left: 8%; animation-duration: 7s;">✨ 2025.12.17 我們的故事正式開始 ✨</div>
+    <div class="floating-marquee" style="top: 18%; right: 8%; animation-duration: 9s;">✨ 這麼久了 我 還是喜歡你 ✨</div>
+    <div class="floating-marquee" style="bottom: 18%; left: 8%; animation-duration: 8s;">✨ 哥哥的兔兔最乖最可愛啦 ✨</div>
+    <div class="floating-marquee" style="bottom: 10%; right: 8%; animation-duration: 6s;">✨ 哥哥我要抱抱嘛 ✨</div>
+    <div class="floating-marquee" style="top: 45%; left: 5%; animation-duration: 10s;">✨ 我的寶貝兔兔最厲害啦 ✨</div>
+    <div class="floating-marquee" style="top: 45%; right: 5%; animation-duration: 7.5s;">✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨</div>
 
     <div class="content-container">
         <div class="countdown-box">
