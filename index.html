@@ -61,22 +61,45 @@
             }
         }
 
-        /* 分散在畫面各處的浪漫語錄 */
-        .scattered-text {
+        /* 真正會滾動的跑馬燈容器 */
+        .marquee-container {
             position: absolute;
-            font-family: 'Long Cang', cursive;
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.85);
-            text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
-            z-index: 5;
+            width: 100%;
+            overflow: hidden;
             white-space: nowrap;
-            letter-spacing: 2px;
-            animation: floatText 4s infinite ease-in-out alternate;
+            z-index: 5;
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(3px);
+            padding: 10px 0;
         }
 
-        @keyframes floatText {
-            0% { transform: translateY(0px); opacity: 0.7; }
-            100% { transform: translateY(-8px); opacity: 1; }
+        .marquee-top {
+            top: 15px;
+        }
+
+        .marquee-bottom {
+            bottom: 15px;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scrollMarquee 22s linear infinite;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            font-family: 'Long Cang', cursive;
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+            margin-right: 60px;
+            letter-spacing: 2px;
+        }
+
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* 內容容器 (正中間的倒數計時) */
@@ -91,7 +114,6 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
-            pointer-events: none;
         }
 
         .countdown-box {
@@ -104,7 +126,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            pointer-events: auto;
         }
 
         h1 {
@@ -144,13 +165,31 @@
 
     <div class="night-sky" id="sky"></div>
 
-    <!-- 完美分散在夜空各處的浪漫語錄 -->
-    <div class="scattered-text" style="top: 10%; left: 8%;">✨ 2025.12.17 我們的故事正式開始 ✨</div>
-    <div class="scattered-text" style="top: 18%; right: 8%;">✨ 這麼久了 我 還是喜歡你 ✨</div>
-    <div class="scattered-text" style="bottom: 18%; left: 8%;">✨ 哥哥的兔兔最乖最可愛啦 ✨</div>
-    <div class="scattered-text" style="bottom: 10%; right: 8%;">✨ 哥哥我要抱抱嘛 ✨</div>
-    <div class="scattered-text" style="top: 45%; left: 5%;">✨ 我的寶貝兔兔最厲害啦 ✨</div>
-    <div class="scattered-text" style="top: 45%; right: 5%;">✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨</div>
+    <!-- 上方會滾動的跑馬燈 -->
+    <div class="marquee-container marquee-top">
+        <div class="marquee-track">
+            <span class="marquee-text">✨ 2025.12.17 我們的故事正式開始 ✨</span>
+            <span class="marquee-text">✨ 這麼久了 我 還是喜歡你 ✨</span>
+            <span class="marquee-text">✨ 哥哥的兔兔最乖最可愛啦 ✨</span>
+            <!-- 重複一次確保滾動順暢無縫 -->
+            <span class="marquee-text">✨ 2025.12.17 我們的故事正式開始 ✨</span>
+            <span class="marquee-text">✨ 這麼久了 我 還是喜歡你 ✨</span>
+            <span class="marquee-text">✨ 哥哥的兔兔最乖最可愛啦 ✨</span>
+        </div>
+    </div>
+
+    <!-- 下方會滾動的跑馬燈 -->
+    <div class="marquee-container marquee-bottom">
+        <div class="marquee-track">
+            <span class="marquee-text">✨ 哥哥我要抱抱嘛 ✨</span>
+            <span class="marquee-text">✨ 我的寶貝兔兔最厲害啦 ✨</span>
+            <span class="marquee-text">✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨</span>
+            <!-- 重複一次確保滾動順暢無縫 -->
+            <span class="marquee-text">✨ 哥哥我要抱抱嘛 ✨</span>
+            <span class="marquee-text">✨ 我的寶貝兔兔最厲害啦 ✨</span>
+            <span class="marquee-text">✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨</span>
+        </div>
+    </div>
 
     <div class="content-container">
         <div class="countdown-box">
