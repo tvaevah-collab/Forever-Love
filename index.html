@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Forever Love - Our Journey</title>
-    <!-- 引入可愛手寫風格字體 -->
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 引入原本的優雅字型 + 手寫字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Caveat:wght@700&family=Noto+Serif+TC:wght@400;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -14,7 +14,7 @@
             height: 100%;
             background-color: #0b0f19;
             overflow: hidden;
-            font-family: 'ZCOOL KuaiLe', 'Noto Serif TC', sans-serif;
+            font-family: 'Noto Serif TC', serif;
             color: #fff;
         }
 
@@ -76,18 +76,19 @@
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            font-family: 'Caveat', cursive;
             text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
-            color: #ffccd5;
+            color: #ffb6c1;
         }
 
         .subtitle {
             font-size: 1.1rem;
             margin-bottom: 30px;
             color: #b0c4de;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         /* 倒數計時卡片 */
@@ -111,7 +112,7 @@
 
         .time-number {
             font-size: 1.8rem;
-            color: #ff99a8;
+            color: #ffccd5;
             font-weight: bold;
         }
 
@@ -121,11 +122,12 @@
             margin-top: 5px;
         }
 
-        /* 跑馬燈語錄 */
+        /* 跑馬燈語錄：這裡特別換成可愛手寫字！ */
         .quote-box {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: #fffaf0;
             min-height: 40px;
+            font-family: 'ZCOOL KuaiLe', sans-serif;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
             transition: opacity 1s ease-in-out;
             max-width: 500px;
@@ -138,8 +140,8 @@
     <div class="night-sky" id="sky"></div>
 
     <div class="content-container">
-        <h1>Our Special Journey</h1>
-        <div class="subtitle">每一刻，都有妳陪伴的浪漫時光</div>
+        <h1>Forever Love</h1>
+        <div class="subtitle">Our Journey & Sweet Moments</div>
 
         <div class="countdown-box" id="countdown">
             <div class="time-item">
@@ -193,7 +195,7 @@
         }
         setInterval(createShootingStar, 2500);
 
-        // 3. 倒數計時（可自行修改起始日期）
+        // 3. 倒數計時
         const startDate = new Date('2026-01-01T00:00:00');
         function updateCountdown() {
             const now = new Date();
@@ -213,12 +215,12 @@
 
         // 4. 跑馬燈 6 句甜甜語錄
         const quotes = [
-            "「星空再美，也比不上妳眼裡的溫柔。」",
-            "「謝謝妳總是把最棒的驚喜帶進我的日常。」",
-            "「時間一直走，我們一直愛。」",
-            "「和小岳一起過的每一秒，都是賺到的甜。」",
-            "「有閨密和妳在身邊，這條路發光也發熱。」",
-            "「願所有的美好，都剛好如期而至。」"
+            "「兔兔的傻狐狸哥哥怎麼可以這麼甜呀」",
+            "「2025.12.17 我們的故事正式開始」",
+            "「這麼久了 我 還是喜歡你」",
+            "「哥哥的兔兔最乖最可愛啦」",
+            "「哥哥我要抱抱嘛」",
+            "「我的寶貝兔兔最厲害啦」"
         ];
         let currentQuoteIndex = 0;
         const quoteDisplay = document.getElementById('quoteDisplay');
