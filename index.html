@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Forever Love - Our Journey</title>
-    <!-- 引入原本的優雅字型 + 手寫字體 -->
+    <!-- 引入原本的字型與手寫字體 -->
     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Caveat:wght@700&family=Noto+Serif+TC:wght@400;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
     <style>
         body, html {
@@ -76,62 +76,62 @@
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 3px;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
             font-family: 'Caveat', cursive;
-            text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
             color: #ffb6c1;
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
         }
 
         .subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
             color: #b0c4de;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
-        /* 倒數計時卡片 */
+        /* 倒數計時卡片 (維持原本大數字美感) */
         .countdown-box {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px 30px;
+            padding: 25px 35px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            margin-bottom: 30px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .time-item {
+            margin-bottom: 25px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .time-number {
-            font-size: 1.8rem;
-            color: #ffccd5;
+        .days-number {
+            font-size: 4rem;
+            color: #fff;
             font-weight: bold;
+            font-family: 'Caveat', cursive;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
-        .time-label {
-            font-size: 0.85rem;
-            color: #ddd;
-            margin-top: 5px;
+        .time-detail {
+            font-size: 0.95rem;
+            color: #d1d5db;
+            letter-spacing: 1px;
         }
 
-        /* 跑馬燈語錄：這裡特別換成可愛手寫字！ */
+        /* 跑馬燈語錄：維持妳要的內容，字型改為可愛手寫體 */
         .quote-box {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #fffaf0;
-            min-height: 40px;
+            min-height: 45px;
             font-family: 'ZCOOL KuaiLe', sans-serif;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
             transition: opacity 1s ease-in-out;
             max-width: 500px;
             line-height: 1.5;
+            padding: 0 15px;
         }
     </style>
 </head>
@@ -140,26 +140,12 @@
     <div class="night-sky" id="sky"></div>
 
     <div class="content-container">
-        <h1>Forever Love</h1>
-        <div class="subtitle">Our Journey & Sweet Moments</div>
+        <h1>OUR JOURNEY</h1>
+        <div class="subtitle">專屬於我們的甜蜜時光</div>
 
-        <div class="countdown-box" id="countdown">
-            <div class="time-item">
-                <span class="time-number" id="days">00</span>
-                <span class="time-label">天</span>
-            </div>
-            <div class="time-item">
-                <span class="time-number" id="hours">00</span>
-                <span class="time-label">小時</span>
-            </div>
-            <div class="time-item">
-                <span class="time-number" id="minutes">00</span>
-                <span class="time-label">分</span>
-            </div>
-            <div class="time-item">
-                <span class="time-number" id="seconds">00</span>
-                <span class="time-label">秒</span>
-            </div>
+        <div class="countdown-box">
+            <div class="days-number" id="daysCount">0</div>
+            <div class="time-detail" id="timeDetail">已經一起度過了 0 天 0 小時 0 分鐘 0 秒</div>
         </div>
 
         <div class="quote-box" id="quoteDisplay">載入專屬回憶中...</div>
@@ -195,32 +181,31 @@
         }
         setInterval(createShootingStar, 2500);
 
-        // 3. 倒數計時
-        const startDate = new Date('2026-01-01T00:00:00');
+        // 3. 倒數計時（設定為 2025年12月17日上午11點3分）
+        const startDate = new Date('2025-12-17T11:03:00');
         function updateCountdown() {
             const now = new Date();
             const diff = now - startDate;
+            
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((diff / 1000 / 60) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
 
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            document.getElementById('daysCount').innerText = days;
+            document.getElementById('timeDetail').innerText = `已經一起度過了 ${days} 天 ${hours} 小時 ${minutes} 分鐘 ${seconds} 秒`;
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // 4. 跑馬燈 6 句甜甜語錄
+        // 4. 跑馬燈甜甜語錄（使用妳提供的原汁原味內容）
         const quotes = [
-            "「兔兔的傻狐狸哥哥怎麼可以這麼甜呀」",
-            "「2025.12.17 我們的故事正式開始」",
-            "「這麼久了 我 還是喜歡你」",
-            "「哥哥的兔兔最乖最可愛啦」",
-            "「哥哥我要抱抱嘛」",
-            "「我的寶貝兔兔最厲害啦」"
+            "✨ 2025.12.17 我們的故事正式開始 ✨",
+            "✨ 這麼久了 我 還是喜歡你 ✨",
+            "✨ 哥哥的兔兔最乖最可愛啦 ✨",
+            "✨ 哥哥我要抱抱嘛 ✨",
+            "✨ 我的寶貝兔兔最厲害啦 ✨",
+            "✨ 兔兔的傻狐狸哥哥怎麼可以這麼甜呀 ✨"
         ];
         let currentQuoteIndex = 0;
         const quoteDisplay = document.getElementById('quoteDisplay');
