@@ -163,7 +163,9 @@
         <div class="countdown-box">
             <h1>OUR JOURNEY</h1>
             <div class="subtitle">專屬於我們的甜蜜時光。依舊心岳你</div>
+            <!-- 中間大數字恢復顯示天數 -->
             <div class="days-number" id="daysCount">0</div>
+            <!-- 下方文字顯示總小時、分鐘、秒數 -->
             <div class="time-detail" id="timeDetail">已經一起度過了 0 小時 0 分鐘 0 秒</div>
         </div>
     </div>
@@ -198,17 +200,20 @@
         }
         setInterval(createShootingStar, 2500);
 
-        // 3. 倒數計時（2025年12月17日上午11點3分 - 不顯示天數，改為總小時數）
+        // 3. 倒數計時（2025年12月17日上午11點3分）
         const startDate = new Date('2025-12-17T11:03:00');
         function updateCountdown() {
             const now = new Date();
             const diff = now - startDate;
             
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const totalHours = Math.floor(diff / (1000 * 60 * 60));
             const minutes = Math.floor((diff / 1000 / 60) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
 
-            document.getElementById('daysCount').innerText = totalHours;
+            // 中間大數字顯示天數
+            document.getElementById('daysCount').innerText = days;
+            // 下方文字顯示總小時數、分鐘、秒數
             document.getElementById('timeDetail').innerText = `已經一起度過了 ${totalHours} 小時 ${minutes} 分鐘 ${seconds} 秒`;
         }
         setInterval(updateCountdown, 1000);
