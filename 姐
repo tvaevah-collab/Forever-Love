@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sweet Journey - Our Story</title>
+    <!-- 引入可愛圓體與手寫字 -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffe4e6 0%, #ffc0cb 50%, #fbcfe8 100%);
+            overflow: hidden;
+            font-family: 'Zen Maru Gothic', sans-serif;
+            color: #5c4033;
+        }
+
+        /* 甜點與馬卡龍漂浮背景 */
+        .sweet-sky {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .macaron {
+            position: absolute;
+            font-size: 1.8rem;
+            animation: floatUp linear infinite;
+            opacity: 0.85;
+            user-select: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.9;
+            }
+            80% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 溫馨粉紅跑馬燈 */
+        .sky-marquee {
+            position: absolute;
+            font-family: 'Zen Maru Gothic', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 6px rgba(219, 39, 119, 0.4);
+            z-index: 5;
+            white-space: nowrap;
+            letter-spacing: 2px;
+            animation: driftAcross linear infinite;
+        }
+
+        @keyframes driftAcross {
+            0% { transform: translateX(105vw); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* 內容容器 */
+        .content-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid #fff;
+            padding: 35px 45px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(244, 114, 182, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+            font-family: 'Caveat', cursive;
+            color: #db2777;
+            text-shadow: 0 0 10px rgba(244, 114, 182, 0.4);
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            color: #9d174d;
+            letter-spacing: 1px;
+            font-family: 'Zen Maru Gothic', sans-serif;
+        }
+
+        .days-number {
+            font-size: 5rem;
+            color: #e11d48;
+            font-weight: bold;
+            font-family: 'Caveat', cursive;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
+        }
+
+        .time-detail {
+            font-size: 1.05rem;
+            color: #881337;
+            letter-spacing: 1.5px;
+            font-family: 'Zen Maru Gothic', sans-serif;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sweet-sky" id="sky"></div>
+
+    <!-- 空中緩慢飄過的溫馨粉紅句子 -->
+    <div class="sky-marquee" style="top: 10%; animation-duration: 42s; animation-delay: 0s;">💖 2025.06.10 遇見學姊的美好日子 💖</div>
+    <div class="sky-marquee" style="top: 22%; animation-duration: 50s; animation-delay: -15s;">🧁 甜甜的馬卡龍 給最可愛的學姊 🧁</div>
+    <div class="sky-marquee" style="bottom: 25%; animation-duration: 45s; animation-delay: -20s;">✨ 和學姊在一起每一天都甜滋滋 ✨</div>
+    <div class="sky-marquee" style="bottom: 12%; animation-duration: 48s; animation-delay: -8s;">🍓 草莓蛋糕與最棒的學姊 🍓</div>
+
+    <div class="content-container">
+        <div class="countdown-box">
+            <h1>SWEET MEMORIES</h1>
+            <div class="subtitle">和學姊相遇的甜蜜時光 🍰</div>
+            <div class="days-number" id="daysCount">0</div>
+            <div class="time-detail">我們已經認識彼此這麼久啦！</div>
+        </div>
+    </div>
+
+    <script>
+        // 1. 生成漂浮的馬卡龍與甜點元素
+        const sky = document.getElementById('sky');
+        const sweets = ['🧁', '🍪', '🍰', '🍓', '🍬', '🍩', '🍫', '✨'];
+        const sweetCount = 25;
+
+        for (let i = 0; i < sweetCount; i++) {
+            const el = document.createElement('div');
+            el.classList.add('macaron');
+            el.innerText = sweets[Math.floor(Math.random() * sweets.length)];
+            el.style.left = `${Math.random() * 100}%`;
+            el.style.fontSize = `${Math.random() * 1.2 + 1.2}rem`;
+            el.style.animationDuration = `${Math.random() * 6 + 6}s`;
+            el.style.animationDelay = `${Math.random() * 5}s`;
+            sky.appendChild(el);
+        }
+
+        // 2. 計算從 2025年6月10日 到今天的總天數
+        const startDate = new Date('2025-06-10T00:00:00');
+        function updateDays() {
+            const now = new Date();
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('daysCount').innerText = days > 0 ? days : 0;
+        }
+        updateDays();
+    </script>
+</body>
+</html>
